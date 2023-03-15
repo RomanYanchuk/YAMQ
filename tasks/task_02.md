@@ -38,7 +38,7 @@ The YAMQ aims to achieve the following outcomes:
 The YAMQ is designed for music enthusiasts of all ages who enjoy playing games and want to test their knowledge of different genres of music.
 
 ### Stakeholders:
-The stakeholders for this project include the development team, project sponsor, project manager (lecturer), and end-users.
+The stakeholders for this project include the development team, project sponsor, project manager, lecturers, and end-users.
 
 ### Project Constraints:
 The following constraints apply to the project:
