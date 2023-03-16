@@ -31,3 +31,4 @@
 ## Tasks
 1. [Team](tasks/task_01.md)
 2. [Project Charter](tasks/task_02.md)
+3. [Project Plan](tasks/task_03.md)
