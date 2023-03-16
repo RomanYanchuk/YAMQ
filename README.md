@@ -31,4 +31,7 @@
 ## Tasks
 1. [Team](tasks/task_01.md)
 2. [Project Charter](tasks/task_02.md)
-3. [Project Plan](tasks/task_03.md)
+3. Project Plan
+    - [Project schedule](tasks/task_03_Schedule.md)
+    - [Resources](tasks/task_03_Resources.md)
+    - [Budget](tasks/task_03_Budget.md)
