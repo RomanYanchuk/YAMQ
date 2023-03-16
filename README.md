@@ -35,3 +35,5 @@
     - [Project schedule](tasks/task_03_Schedule.md)
     - [Resources](tasks/task_03_Resources.md)
     - [Budget](tasks/task_03_Budget.md)
+4. TODO
+5. [UI requirements](tasks/task_05_wireframes.pdf)
