@@ -32,8 +32,8 @@
 1. [Team](tasks/task_01.md)
 2. [Project Charter](tasks/task_02.md)
 3. Project Plan
-    - [Project schedule](tasks/task_03_Schedule.md)
-    - [Resources](tasks/task_03_Resources.md)
-    - [Budget](tasks/task_03_Budget.md)
+    - [Project schedule](tasks/task_03.md#project-schedule)
+    - [Resources](tasks/task_03.md#project-resources)
+    - [Budget](tasks/task_03.md#project-budget)
 4. [SRS](tasks/task_04.md)
 5. [UI requirements](tasks/task_05_wireframes.pdf)
