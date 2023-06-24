@@ -1,0 +1,52 @@
+{
+  "general": {
+    "loading": "Loading"
+  },
+  "topMenu": {
+    "languages": {
+      "uk": "Українська",
+      "en": "English"
+    }
+  },
+  "navigation": {
+    "next": "Next",
+    "back": "Back",
+    "create": "Create"
+  },
+  "footer": {
+    "author": "Quiz"
+  },
+  "playlist": {
+    "name": "Name",
+    "descriptionOptional": "Description (optional)",
+    "nameRequiredError": "Name is required field",
+    "createHeader": "Create new playlist",
+    "fillNameStep": "Fill out your new playlist name",
+    "addTracksStep": "Add tracks",
+    "add": "Add track",
+    "search": "Search"
+  },
+  "track": {
+    "selectedTracks": "Selected tracks",
+    "name": "Name",
+    "author": "Author",
+    "album": "Album"
+  },
+  "play": {
+    "welcome": "Welcome to the quiz",
+    "tracks": "tracks",
+    "start": "Start",
+    "currentSong": "Song {{current}} of {{all}} playing",
+    "answer": "Your guess",
+    "answerRight": "You got it!",
+    "guessTime": "You guessed it in {{seconds}} seconds!",
+    "timeIsUp": "Time's up!",
+    "outOfTime": "You couldn't get this one on time!",
+    "correctAnswer": "It was {{song}} by {{author}}",
+    "badResult": "Better luck next time...",
+    "normalResult": "There is a room to improve",
+    "perfectResult": "You’re a true musical expert!",
+    "answersResult": "{{answered}} out of {{all}} answers correct.",
+    "playAgain": "Replay this quiz"
+  }
+}

@@ -1,0 +1,603 @@
+{
+	"info": {
+		"_postman_id": "84db3770-d60f-422e-ac0e-9895fe287451",
+		"name": "stagger",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"token\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"username\":\"info@cquelle.de\", \"password\":\"CQUELLEopen1\"}"
+						},
+						"url": {
+							"raw": "{{token.server}}/v1/token",
+							"host": [
+								"{{token.server}}"
+							],
+							"path": [
+								"v1",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "system",
+			"item": [
+				{
+					"name": "update-database",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{system-password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{system-user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/v1/system/update-database",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"v1",
+								"system",
+								"update-database"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "terms",
+			"item": [
+				{
+					"name": "upload",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"id\": \"term1\",\r\n        \"name\": \"term1\",\r\n        \"description\": \"\",\r\n        \"inputTags\": [\r\n            \"der\",\r\n            \"die\"\r\n        ]\r\n    }\r\n]"
+						},
+						"url": {
+							"raw": "{{server}}/v1/projects/{{projectId}}/terms",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"v1",
+								"projects",
+								"{{projectId}}",
+								"terms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"id\":\"term1\", \"name\":\"term1 - name 1\", \"description\":\"\", \"inputTags\":[\"der\", \"die\"]}"
+						},
+						"url": {
+							"raw": "{{server}}/v1/projects/{{projectId}}/terms/term1",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"v1",
+								"projects",
+								"{{projectId}}",
+								"terms",
+								"term1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"id\":\"term1\", \"name\":\"term1 - name 1\", \"description\":\"\", \"inputTags\":[\"der\", \"die\"]}"
+						},
+						"url": {
+							"raw": "{{server}}/v1/projects/{{projectId}}/terms?pageNumber=1&pageSize=10&searchQuery=name1&searchOption=contains",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"v1",
+								"projects",
+								"{{projectId}}",
+								"terms"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "10"
+								},
+								{
+									"key": "searchQuery",
+									"value": "name1"
+								},
+								{
+									"key": "searchOption",
+									"value": "contains"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/v1/projects/{{projectId}}/terms/term1",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"v1",
+								"projects",
+								"{{projectId}}",
+								"terms",
+								"term1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/v1/projects/{{projectId}}/terms/{{termId}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"v1",
+								"projects",
+								"{{projectId}}",
+								"terms",
+								"{{termId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload output tags",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"outputTags\": [\r\n            \"der\",\r\n            \"die\"\r\n        ],\r\n        \"termId\": \"term1\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/v1/projects/{{projectId}}/terms/outputtags",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"v1",
+								"projects",
+								"{{projectId}}",
+								"terms",
+								"outputtags"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "projects",
+			"item": [
+				{
+					"name": "get all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{server}}/v1/projects",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"v1",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"Project\", \"description\":\"Description\", \"outputTags\":[\"der\", \"die\"]}"
+						},
+						"url": {
+							"raw": "{{server}}/v1/projects",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"v1",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/v1/projects/1",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"v1",
+								"projects",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"id\":1, \"name\":\"Project\", \"description\":\"Description\", \"outputTags\":[\"der\", \"die\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/v1/projects",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"v1",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get contributors",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/v1/projects/{{projectId}}/contributors",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"v1",
+								"projects",
+								"{{projectId}}",
+								"contributors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add contributor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " \"contributor\"",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/v1/projects/{{projectId}}/contributors",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"v1",
+								"projects",
+								"{{projectId}}",
+								"contributors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get invitation info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/v1/projects/{{projectId}}/invitationstatuses/invitation",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"v1",
+								"projects",
+								"{{projectId}}",
+								"invitationstatuses",
+								"invitation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "join project",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/v1/projects/{{projectId}}/invitationstatuses/invitation",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"v1",
+								"projects",
+								"{{projectId}}",
+								"invitationstatuses",
+								"invitation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change contributor's status",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"displayName\": \"displayName\",\r\n  \"isEnabled\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/v1/projects/{{projectId}}/contributors/status",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"v1",
+								"projects",
+								"{{projectId}}",
+								"contributors",
+								"status"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

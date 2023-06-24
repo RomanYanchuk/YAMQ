@@ -1,0 +1,45 @@
+<div
+  class="flex-row-container track-wrapper"
+  [class.active]="doesTrackAddedToList"
+>
+  <div class="flex-container">
+    <div>
+      <p>
+        {{ "track.name" | translate }}: <b>{{ track.name }}</b>
+      </p>
+      <p>{{ "track.author" | translate }}: {{ track.authors }}</p>
+      <p>{{ "track.album" | translate }}: {{ track.album }}</p>
+      <div>
+        <button
+          (click)="onAudioPlay.emit()"
+          mat-icon-button
+          color="primary"
+          routerLinkActive="router-link-active"
+        >
+          <mat-icon>play_arrow</mat-icon>
+        </button>
+        <button
+          *ngIf="!doesTrackAddedToList"
+          (click)="addToTracks.emit()"
+          mat-icon-button
+          color="primary"
+          routerLinkActive="router-link-active"
+        >
+          <mat-icon>add_box</mat-icon>
+        </button>
+        <button
+          *ngIf="doesTrackAddedToList"
+          (click)="deleteTrack.emit()"
+          mat-icon-button
+          color="warn"
+          routerLinkActive="router-link-active"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="left-margin">
+    <img [src]="track.imageUrl" />
+  </div>
+</div>

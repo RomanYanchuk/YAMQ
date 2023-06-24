@@ -1,0 +1,147 @@
+<div class="center-container">
+  <div class="player">
+    <div *ngIf="state === 0">
+      <h2>{{ "general.loading" | translate }}</h2>
+    </div>
+    <div *ngIf="state === 1">
+      <h2>{{ "play.welcome" | translate }}</h2>
+      <h3>{{ playlist.name }}</h3>
+      <img [src]="playlist.tracks[0].imageUrl" />
+      <h3>{{ playlist.tracks.length }} {{ "play.tracks" | translate }}</h3>
+      <button mat-stroked-button color="primary" (click)="changeState()">
+        {{ "play.start" | translate }}
+      </button>
+    </div>
+
+    <div *ngIf="state === 2" class="spinner">
+      <mat-spinner
+        diameter="200"
+        mode="determinate"
+        [value]="getTimerPercent()"
+      ></mat-spinner>
+      <h1 class="spinner-text">{{ timeLeft }}</h1>
+      <div></div>
+    </div>
+
+    <div *ngIf="state === 3">
+      <div *ngIf="!answeredRight && !isTimeout">
+        <div class="right-corner-spinner">
+          <mat-spinner
+            diameter="50"
+            mode="determinate"
+            [value]="getTimerPercent()"
+          ></mat-spinner>
+          <div class="right-corner-spinner-text">
+            <h2>{{ timeLeft }}</h2>
+          </div>
+        </div>
+        <img
+          [src]="playlist.tracks[currentTrackIndex].imageUrl"
+          [ngClass]="{ blur: !showHint }"
+        />
+        <h2 class="top-margin-1">
+          {{
+            "play.currentSong"
+              | translate
+                : {
+                    current: currentTrackIndex + 1,
+                    all: playlist.tracks.length
+                  }
+          }}
+        </h2>
+        <mat-form-field class="example-form-field">
+          <mat-label>{{ "play.answer" | translate }}</mat-label>
+          <input
+            matInput
+            type="text"
+            [(ngModel)]="answer"
+            (ngModelChange)="onAnswerChange()"
+          />
+          <button
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="answer = ''"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div *ngIf="answeredRight">
+        <h2 color="primary">{{ "play.answerRight" | translate }}</h2>
+        <img [src]="playlist.tracks[currentTrackIndex].imageUrl" />
+        <h2 class="top-margin-1">
+          {{
+            "play.correctAnswer"
+              | translate
+                : {
+                    song: playlist.tracks[currentTrackIndex].name,
+                    author: playlist.tracks[currentTrackIndex].authors
+                  }
+          }}
+        </h2>
+        <h3 class="top-margin-1">
+          {{
+            "play.guessTime"
+              | translate
+                : {
+                    seconds: time - timeLeft
+                  }
+          }}
+        </h3>
+      </div>
+      <div *ngIf="isTimeout">
+        <h2>{{ "play.timeIsUp" | translate }}</h2>
+        <img [src]="playlist.tracks[currentTrackIndex].imageUrl" />
+        <h2 class="top-margin-1">
+          {{
+            "play.correctAnswer"
+              | translate
+                : {
+                    song: playlist.tracks[currentTrackIndex].name,
+                    author: playlist.tracks[currentTrackIndex].authors
+                  }
+          }}
+        </h2>
+        <h3 class="top-margin-1">
+          {{ "play.outOfTime" | translate }}
+        </h3>
+      </div>
+    </div>
+
+    <div *ngIf="state === 4">
+      <h2 *ngIf="numberOfRights / playlist.tracks.length < 0.5">
+        {{ "play.badResult" | translate }}
+      </h2>
+      <h2
+        *ngIf="
+          numberOfRights / playlist.tracks.length >= 0.5 &&
+          numberOfRights / playlist.tracks.length < 0.85
+        "
+      >
+        {{ "play.normalResult" | translate }}
+      </h2>
+      <h2 *ngIf="numberOfRights / playlist.tracks.length >= 0.85">
+        {{ "play.perfectResult" | translate }}
+      </h2>
+      <h3 class="top-margin-1">
+        {{
+          "play.answersResult"
+            | translate
+              : {
+                  answered: numberOfRights,
+                  all: playlist.tracks.length
+                }
+        }}
+      </h3>
+      <button
+        mat-stroked-button
+        color="primary"
+        class="top-margin-1"
+        (click)="resetAndRestart()"
+      >
+        {{ "play.playAgain" | translate }}
+      </button>
+    </div>
+  </div>
+</div>

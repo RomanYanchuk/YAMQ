@@ -1,0 +1,27 @@
+.flex-container {
+  display: flex;
+}
+
+.flex-row-container {
+  @extend .flex-container;
+  justify-content: space-between;
+}
+
+.track-wrapper {
+  padding: 1em;
+  margin: 3px;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.left-margin {
+  margin-left: 0.5em;
+}
+
+img {
+  width: 120px;
+  height: 120px;
+}
+
+.active {
+  // background-color: aliceblue;
+}

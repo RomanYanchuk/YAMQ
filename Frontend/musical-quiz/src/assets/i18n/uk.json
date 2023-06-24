@@ -1,0 +1,52 @@
+{
+  "general": {
+    "loading": "Завантаження"
+  },
+  "topMenu": {
+    "languages": {
+      "uk": "Українська",
+      "en": "English"
+    }
+  },
+  "navigation": {
+    "next": "Далі",
+    "back": "Назад",
+    "create": "Створити"
+  },
+  "footer": {
+    "author": "Quiz"
+  },
+  "playlist": {
+    "name": "Назва",
+    "descriptionOptional": "Опис (необов'язково)",
+    "nameRequiredError": "Назва - це обов'язкове поле",
+    "createHeader": "Створити новий плейлист",
+    "fillNameStep": "Додати назву плейлиста",
+    "addTracksStep": "Додати треки",
+    "add": "Додати трек",
+    "search": "Шукати"
+  },
+  "track": {
+    "selectedTracks": "Вибрані треки",
+    "name": "Назва",
+    "author": "Автор",
+    "album": "Альбом"
+  },
+  "play": {
+    "welcome": "Вітаємо на вікторині",
+    "tracks": "треків",
+    "start": "Почати",
+    "currentSong": "Грає трек {{current}} з {{all}}",
+    "answer": "Ваша відповідь",
+    "answerRight": "Відповідь вірна!",
+    "guessTime": "Ви відгадали цей трек за {{seconds}} секунд(и)!",
+    "timeIsUp": "Час сплив!",
+    "outOfTime": "Ви не змогли відгадати цей трек вчасно!",
+    "correctAnswer": "Це був трек {{song}} від {{author}}",
+    "badResult": "Спробуйте ще...",
+    "normalResult": "Є куди рости.",
+    "perfectResult": "Ви - справжній музичний експерт!",
+    "answersResult": "{{answered}} з {{all}} відповідей вірні.",
+    "playAgain": "Грати ще раз"
+  }
+}

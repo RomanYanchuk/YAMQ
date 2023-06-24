@@ -1,0 +1,45 @@
+<mat-toolbar color="primary">
+  <a
+    class="logo"
+    [routerLink]="['/test']"
+    routerLinkActive="router-link-active"
+    title="Web Album"
+  >
+    Yet Another Music Quiz
+  </a>
+  <span class="horizontal-spacer"></span>
+  <mat-form-field class="languageSelect">
+    <mat-select
+      [(value)]="selectedLanguage"
+      (selectionChange)="onLanguageChanged($event)"
+    >
+      <mat-select-trigger
+        ><img
+          src="/assets/images/languages/{{ selectedLanguage }}.png"
+          alt="image"
+        />
+      </mat-select-trigger>
+      <mat-option *ngFor="let lang of languages" [value]="lang" class="img">
+        <img
+          src="/assets/images/languages/{{ lang }}.png"
+          alt="image"
+          class="img"
+        />
+        {{ "topMenu.languages." + lang | translate }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-icon
+    class="pointer"
+    *ngIf="!isDarkModeEnabled"
+    (click)="toggleDarkMode.emit()"
+    >brightness_5</mat-icon
+  >
+  <mat-icon
+    class="pointer"
+    *ngIf="isDarkModeEnabled"
+    (click)="toggleDarkMode.emit()"
+    >bedtime</mat-icon
+  >
+</mat-toolbar>

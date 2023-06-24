@@ -1,0 +1,24 @@
+<div *ngIf="playlist">
+    <h1>{{playlist.name}}</h1>
+    <mat-grid-list cols="1" rowHeight="400px" class="mat-grid-list">
+        <mat-grid-tile *ngFor="let track of playlist.tracks">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>
+                        <h1>{{track.name}}</h1>
+                    </mat-card-title>
+                </mat-card-header>
+                <img [src]="track.imageUrl">
+                <mat-card-content>
+                    <h1>{{track.author}}</h1>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button (click)="onAudioPlay(track)" mat-button color="primary"
+                        routerLinkActive="router-link-active">
+                        <mat-icon>play_arrow</mat-icon>
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

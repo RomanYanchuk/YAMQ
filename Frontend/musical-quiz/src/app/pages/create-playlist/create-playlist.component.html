@@ -1,0 +1,123 @@
+<h1>{{ "playlist.createHeader" | translate }}</h1>
+<div>
+  <mat-stepper [linear]="true" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>{{
+          "playlist.fillNameStep" | translate
+        }}</ng-template>
+        <div class="flex-column-container">
+          <mat-form-field>
+            <input
+              matInput
+              formControlName="name"
+              [placeholder]="'playlist.name' | translate"
+            />
+            <mat-error
+              *ngIf="name.hasError('required') && (name.dirty || name.touched)"
+              [innerHtml]="'playlist.nameRequiredError' | translate"
+            >
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              formControlName="description"
+              [placeholder]="'playlist.descriptionOptional' | translate"
+            />
+          </mat-form-field>
+        </div>
+        <div>
+          <button
+            mat-stroked-button
+            matStepperNext
+            color="primary"
+            [disabled]="name.invalid"
+          >
+            {{ "navigation.next" | translate }}
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [completed]="tracks.length > 0">
+      <ng-template matStepLabel>{{
+        "playlist.addTracksStep" | translate
+      }}</ng-template>
+      <div>
+        <div *ngIf="tracks.length > 0" class="tracks=container">
+          <h2>{{ "track.selectedTracks" | translate }}:</h2>
+          <div *ngFor="let track of tracks" class="width-50">
+            <app-track-info-tile
+              [track]="track"
+              [doesTrackAddedToList]="doesTrackAddedToList(track.id)"
+              (onAudioPlay)="onAudioPlay(track)"
+              (addToTracks)="addToTracks(track)"
+              (deleteTrack)="deleteTrack(track)"
+            ></app-track-info-tile>
+          </div>
+        </div>
+        <mat-expansion-panel hideToggle class="expansion-panel top-margin-1">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <b>{{ "playlist.add" | translate }} +</b>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div>
+            <mat-form-field class="example-form-field">
+              <mat-label>{{ "playlist.search" | translate }}</mat-label>
+              <input
+                matInput
+                type="text"
+                [(ngModel)]="searchValue"
+                (keydown.enter)="search()"
+              />
+              <button
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                (click)="searchValue = ''"
+              >
+                <mat-icon>close</mat-icon>
+              </button>
+              <button
+                matSuffix
+                mat-icon-button
+                color="primary"
+                aria-label="Search"
+                (click)="search()"
+              >
+                <mat-icon>search</mat-icon>
+              </button>
+            </mat-form-field>
+            <div class="overflow">
+              <div *ngFor="let track of searchResultList" class="width-50">
+                <app-track-info-tile
+                  [track]="track"
+                  [doesTrackAddedToList]="doesTrackAddedToList(track.id)"
+                  (onAudioPlay)="onAudioPlay(track)"
+                  (addToTracks)="addToTracks(track)"
+                  (deleteTrack)="deleteTrack(track)"
+                ></app-track-info-tile>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        <div class="top-margin-1">
+          <button mat-stroked-button matStepperPrevious>
+            {{ "navigation.back" | translate }}
+          </button>
+          <button
+            mat-stroked-button
+            matStepperNext
+            color="primary"
+            [disabled]="tracks.length === 0"
+            class="left-margin-05"
+            (click)="create()"
+          >
+            {{ "navigation.create" | translate }}
+          </button>
+        </div>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>
