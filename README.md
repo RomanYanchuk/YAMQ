@@ -37,3 +37,4 @@
     - [Budget](tasks/task_03.md#project-budget)
 4. [SRS](tasks/task_04.md)
 5. [UI requirements](tasks/task_05_wireframes.pdf)
+6. [Manual Tests](tasks/Manual-Tests.pdf)
